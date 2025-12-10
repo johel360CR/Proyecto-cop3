@@ -1,0 +1,65 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+
+}
+<style>
+    .main-container,
+    .content-wrapper,
+    .page-content,
+    .global-wrapper {
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-card">
+
+        <h2 class="text-center mb-4">Iniciar Sesión</h2>
+
+        <form id="account" method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+
+            <!-- Email -->
+            <div class="input-group mb-3">
+                <span class="input-group-text login-icon"><i class="bi bi-envelope-fill"></i></span>
+                <input asp-for="Input.Email" class="form-control login-input" autocomplete="username" aria-required="true" placeholder="Correo electrónico" />
+            </div>
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+            <!-- Password -->
+            <div class="input-group mb-3 mt-2">
+                <span class="input-group-text login-icon"><i class="bi bi-lock-fill"></i></span>
+                <input asp-for="Input.Password" class="form-control login-input" autocomplete="current-password" aria-required="true" placeholder="Contraseña" />
+            </div>
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+            <!-- RememberMe -->
+            <div class="form-check mb-3">
+                <input class="form-check-input" asp-for="Input.RememberMe" />
+                <label class="form-check-label" asp-for="Input.RememberMe">
+                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                </label>
+            </div>
+
+            <!-- Botón -->
+            <button id="login-submit" type="submit" class="btn btn-primary w-100 login-btn">Ingresar</button>
+
+            <!-- Links -->
+            <div class="text-center mt-3">
+                <!--<p><a id="forgot-password" asp-page="./ForgotPassword">¿Olvidaste tu contraseña?</a></p>-->
+                <p><a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Crear nueva cuenta</a></p>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
